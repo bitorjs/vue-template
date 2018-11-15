@@ -7,7 +7,7 @@ import Application from '../../application/Application'
 class VueApplication extends Application {
   constructor() {
     super()
-    this.$vue = this.createVueRoot()
+
 
     this.ctx.render = (webview, props) => {
       this.$vue.webview = webview;
@@ -32,33 +32,39 @@ class VueApplication extends Application {
     Vue.prototype.$bitor = this;
   }
 
-  createVueRoot() {
+  createVueRoot(vueRootComponent, htmlElementId) {
+
+    const innerPage = {
+      name: 'webview-container',
+      render(h) {
+        if (Object.prototype.toString.call(this.$root.webview) === '[object String]') {
+          return h('span', this.$root.webview);
+        }
+        return h(this.$root.webview, {
+          props: this.$root.props
+        });
+      }
+    }
+
+    Vue.component(innerPage.name, innerPage);
 
     return new Vue({
-      el: '#root',
+      el: htmlElementId,
       data() {
         return {
           webview: null,
           props: null
         }
       },
-      render: h => h({
-        name: 'webview-container',
-        render(h) {
-          if (Object.prototype.toString.call(this.$root.webview) === '[object String]') {
-            return h('span', this.$root.webview);
-          }
-          return h(this.$root.webview, {
-            props: this.$root.props
-          });
-        }
-      })
+      render: h => h(vueRootComponent ? vueRootComponent : innerPage)
     })
   }
 
-  start(client) {
+  start(client, htmlElementId, vueRootComponent) {
+    htmlElementId = htmlElementId || '#root';
     this.registerPlugin(client)
     this.emit('ready');
+    this.$vue = this.createVueRoot(vueRootComponent, htmlElementId)
     this.startServer()
     this.emit('after-server');
   }
