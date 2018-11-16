@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const htmlPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const BitorPlugin = require('../application/webpack-watcher');
+const BitorPlugin = require('../watcher-webpack-plugin');
 
 var path = require('path');
 
