@@ -1,16 +1,20 @@
 import x_0 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/header.vue';
-import x_1 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/demo.js';
-import x_2 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/index.js';
-import x_3 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/m.js';
+import x_1 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/page-container.vue';
+import x_2 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/page-root-container.vue';
+import x_3 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/demo.js';
+import x_4 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/index.js';
+import x_5 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/m.js';
  
 
 export default {
     "components": {
-        "components_header": x_0
+        "components_header": x_0,
+        "components_page-container": x_1,
+        "components_page-root-container": x_2
     },
     "controllers": {
-        "controllers_demo": x_1,
-        "controllers_index": x_2,
-        "controllers_m": x_3
+        "controllers_demo": x_3,
+        "controllers_index": x_4,
+        "controllers_m": x_5
     }
 }

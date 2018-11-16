@@ -23,9 +23,9 @@ module.exports = {
       root: process.cwd() + '/app',
       cachefile: '.classloader.js',
       rules: {
+        // 自动生成
         components: ["components/**/*.vue"],
         controllers: "controllers/**/*.js",
-        // view: ['view/**/*.vue', 'view/**/*.js'],
       },
       onAddCallback: function (ns, path) {
         console.log('add', ns, path)
@@ -71,16 +71,6 @@ module.exports = {
     ignored: [require('path').resolve(__dirname, './dist/**/*.*'), 'node_modules']
   },
   resolve: {
-    // modules:[
-    //   // path.resolve( "./"), 
-    //   path.resolve( "./node_modules"), 
-    //   // path.resolve('../router'),
-    //   // path.resolve('../router/node_modules'),
-    //   // path.resolve('../application'),
-    //   // path.resolve('../application/node_modules'),
-    //   // path.resolve('../HashHistory'),
-    //   // path.resolve('../HashHistory/node_modules'),
-    // ],
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue': 'vue/dist/vue.js'
@@ -92,13 +82,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
-        // cacheDirectory: true, // for faster rebuild
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
       {
+        test: /\.css$/,
+        use: ['css-loader', 'less-loader']
+      }, {
         test: /\.less$/,
         use: ['vue-style-loader', 'css-loader', 'less-loader']
       }

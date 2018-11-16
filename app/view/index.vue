@@ -1,10 +1,6 @@
 <template>
   <div class="container">
     {{message}}
-    <p>
-      <a href="#a">a</a>
-      <button class="header" @click="func">Button</button>
-    </p>
   </div>
 </template>
 

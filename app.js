@@ -1,14 +1,12 @@
-import classloader from './.classloader';
-import C from './app/controllers/index'
+import "normalize.css";
 import VueApplication from './vue-inject';
-import A from './app/controllers/demo';
-import D from './vue-inject/decorators';
+import classloader from './.classloader';
+import Start from './app/view/start';
 
-import ClientA from './plugins/pluginA/app'
 
 let client = app => {
-  app.registerPlugin(ClientA);
   app.on('ready', () => {
+    // 自动注入 controller
     const ctrls = classloader['controllers'];
     for (const key in ctrls) {
       if (ctrls.hasOwnProperty(key)) {
@@ -16,7 +14,19 @@ let client = app => {
         app.registerController(c);
       }
     }
+
+    // 自动注入 全局组件
+    const comps = classloader['components'];
+    for (const key in comps) {
+      if (comps.hasOwnProperty(key)) {
+        const c = comps[key];
+        app.registerComponent(c);
+      }
+    }
+
   })
 }
 
-new VueApplication().start(client);
+// new VueApplication().start(client);
+// or
+new VueApplication().start(client, null, Start);
