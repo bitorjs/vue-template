@@ -1,31 +1,35 @@
 <template>
   <PageRootContainer>
-    <PageContainer>
-      <div class="top-header">公用头部</div>
-      <webview-container></webview-container>
-    </PageContainer>
+    <Header border>头部</Header>
+    <Tab></Tab>
+    <webview-container></webview-container>
   </PageRootContainer>
   
 </template>
 <script>
+import Tab from "./tab";
 export default {
-  nane: "StartPage"
+  nane: "StartPage",
+  components: {
+    Tab
+  }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
+* {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
 html,
 body {
-  display: block;
+  display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 0;
-  margin: 0;
 }
-.top-header {
-  width: 100%;
-  height: 24px;
-  background: white;
-  text-align: center;
+div,
+p,
+center {
+  box-sizing: border-box;
 }
 </style>
 

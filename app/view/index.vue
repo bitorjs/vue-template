@@ -1,9 +1,10 @@
 <template>
-  <div class="container">
-    {{message}}
-  </div>
+  <PageRootContainer>
+    <PageContainer>
+      <div v-redirect="'/order'">To Order</div>
+    </PageContainer>
+  </PageRootContainer>
 </template>
-
 <script>
 export default {
   name: "Index",
@@ -15,21 +16,9 @@ export default {
   methods: {
     func: function() {
       console.log(this);
-      // this.$bitor.ctx.reload();
-
-      return 1;
     }
   }
 };
 </script>
-
 <style lang="less" scoped>
-.container {
-  width: 100%;
-  height: 100%;
-
-  .header {
-    background: red;
-  }
-}
 </style>

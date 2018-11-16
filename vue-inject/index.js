@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import Vue from 'vue'
 import metakeys from './metakeys';
+import directive from './directives';
 import Application from '../../application/Application'
 // import client from '../app';
 
@@ -8,6 +9,8 @@ class VueApplication extends Application {
   constructor() {
     super()
 
+    this.mountVue();
+    this.createDirectives();
 
     this.ctx.render = (webview, props) => {
       this.$vue.webview = webview;
@@ -15,17 +18,17 @@ class VueApplication extends Application {
     }
 
     this.use((ctx, next) => {
+      ctx.params = {};
       let routes = this.$route.match(ctx.url);
       console.log(routes)
       if (routes[0]) {
+        ctx.params = routes[0].params;
         routes[0].handle()
       }
       next()
     }).use(function (ctx, dispatch) {
       console.log('middleware end')
     })
-
-    // this.registerPlugin(client);
   }
 
   mountVue() {
@@ -58,6 +61,10 @@ class VueApplication extends Application {
       },
       render: h => h(vueRootComponent ? vueRootComponent : innerPage)
     })
+  }
+
+  createDirectives() {
+    directive(this, Vue);
   }
 
   start(client, htmlElementId, vueRootComponent) {

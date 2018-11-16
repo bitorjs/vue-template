@@ -1,9 +1,8 @@
-import x_0 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/header.vue';
-import x_1 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/page-container.vue';
-import x_2 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/components/page-root-container.vue';
-import x_3 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/demo.js';
-import x_4 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/index.js';
-import x_5 from '/Users/huangzj/hzjWS/bitorjs/vue-template/app/controllers/m.js';
+import x_0 from '/Users/yanghuimin/hzjWS/bitorjs/vue-template/app/components/header.vue';
+import x_1 from '/Users/yanghuimin/hzjWS/bitorjs/vue-template/app/components/page-container.vue';
+import x_2 from '/Users/yanghuimin/hzjWS/bitorjs/vue-template/app/components/page-root-container.vue';
+import x_3 from '/Users/yanghuimin/hzjWS/bitorjs/vue-template/app/controllers/index.js';
+import x_4 from '/Users/yanghuimin/hzjWS/bitorjs/vue-template/app/controllers/order.js';
  
 
 export default {
@@ -13,8 +12,7 @@ export default {
         "components_page-root-container": x_2
     },
     "controllers": {
-        "controllers_demo": x_3,
-        "controllers_index": x_4,
-        "controllers_m": x_5
+        "controllers_index": x_3,
+        "controllers_order": x_4
     }
 }

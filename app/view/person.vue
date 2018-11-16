@@ -1,10 +1,10 @@
 <template>
   <center>
-    <div>404</div>
+    <div>个人中心</div>
   </center>
 </template>
 <script>
 export default {
-  name: 'Empty'
-}
+  name: "Person"
+};
 </script>

@@ -62,7 +62,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     open: true,
-    port: 9001,
+    port: 9000,
     hot: true,
     compress: false,
     inline: true,
@@ -88,10 +88,7 @@ module.exports = {
         loader: 'vue-loader',
       },
       {
-        test: /\.css$/,
-        use: ['css-loader', 'less-loader']
-      }, {
-        test: /\.less$/,
+        test: /\.(le|c)ss$/,
         use: ['vue-style-loader', 'css-loader', 'less-loader']
       }
     ]

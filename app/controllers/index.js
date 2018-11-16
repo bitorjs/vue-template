@@ -1,4 +1,7 @@
 import D from '../../vue-inject/decorators';
+import Index from '../view/index';
+import notFount from '../view/404';
+import Person from '../view/person';
 
 @D.namespace('/')
 class IndexController {
@@ -8,12 +11,17 @@ class IndexController {
 
   @D.Get('/')
   index() {
-    this.ctx.render('Hello, boy')
+    this.ctx.render(Index)
   }
 
-  @D.Get('/bb')
-  bb() {
-    this.ctx.render('Test, /bb')
+  @D.Get('/person/:userid')
+  person() {
+    this.ctx.render(Person)
+  }
+
+  @D.Get('*')
+  notFount() {
+    this.ctx.render(notFount)
   }
 }
 
