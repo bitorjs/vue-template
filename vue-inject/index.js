@@ -2,8 +2,7 @@ import 'reflect-metadata';
 import Vue from 'vue'
 import metakeys from './metakeys';
 import directive from './directives';
-import Application from '../../application/Application'
-// import client from '../app';
+import Application from 'bitorjs-application'
 
 class VueApplication extends Application {
   constructor() {
