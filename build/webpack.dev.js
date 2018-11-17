@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const WebpackMerge = require('webpack-merge');
 const base = require('./webpack.base');
-const watcherPlugin = require('./watcher.config');
+const watcherPlugin = require('./watcher');
 
 var path = require('path');
 const cwd = process.cwd();

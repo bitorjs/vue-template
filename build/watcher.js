@@ -1,4 +1,4 @@
-const BitorPlugin = require('../../watcher-webpack-plugin');
+const BitorPlugin = require('watcher-plugin');
 var path = require('path');
 
 module.exports = new BitorPlugin({
