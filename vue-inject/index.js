@@ -21,8 +21,10 @@ class VueApplication extends Application {
       let routes = this.$route.match(ctx.url);
       console.log(routes)
       if (routes[0]) {
+        console.log(ctx)
         ctx.params = routes[0].params;
-        routes[0].handle()
+        let r = routes[0].handle(routes[0].params)
+        console.log(r)
       }
       next()
     }).use(function (ctx, dispatch) {
@@ -32,6 +34,19 @@ class VueApplication extends Application {
 
   mountVue() {
     Vue.prototype.$bitor = this;
+    this.requestMethod();
+  }
+
+  requestMethod() {
+    ['get', 'post', 'delete', 'put'].forEach((method) => {
+      this.ctx[method] = Vue.prototype[method] = (url) => {
+        let routes = this.$route.match(url, method);
+        console.log(routes)
+        if (routes[0]) {
+          return routes[0].handle(routes[0].params)
+        }
+      }
+    })
   }
 
   createVueRoot(vueRootComponent, htmlElementId) {

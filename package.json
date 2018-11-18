@@ -49,6 +49,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bitorjs-application": "^1.0.1",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.17",
