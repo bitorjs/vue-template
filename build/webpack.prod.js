@@ -12,10 +12,18 @@ module.exports = WebpackMerge(base, {
     filename: 'build.min.js',
     path: path.resolve(cwd, 'dist'),
   },
+  module: {
+    rules: [{
+      test: /\.(le|c)ss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader', 'less-loader', 'postcss-loader'
+      ]
+    }]
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: 'app.min.css'
     })
   ]
 })

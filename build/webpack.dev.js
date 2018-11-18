@@ -13,6 +13,15 @@ module.exports = WebpackMerge(base, {
     filename: 'build.js',
     path: path.resolve(cwd, 'dist'),
   },
+  module: {
+    rules: [{
+      test: /\.(le|c)ss$/,
+      use: [
+        'vue-style-loader',
+        'css-loader', 'less-loader', 'postcss-loader'
+      ]
+    }, ]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     watcherPlugin,
