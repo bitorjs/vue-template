@@ -3,6 +3,7 @@ import Vue from 'vue'
 import metakeys from './metakeys';
 import directive from './directives';
 import Application from 'bitorjs-application'
+import Store from 'bitorjs-store';
 
 class VueApplication extends Application {
   constructor() {
@@ -33,6 +34,9 @@ class VueApplication extends Application {
   }
 
   mountVue() {
+    this.store = new Store('app', '$');
+    Vue.prototype.store = this.store;
+    Vue.prototype.$store = this.store;
     Vue.prototype.$bitor = this;
     this.requestMethod();
   }
