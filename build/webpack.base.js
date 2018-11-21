@@ -37,10 +37,6 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
-      // {
-      //   test: /\.(le|c)ss$/,
-      //   use: ['vue-style-loader', 'css-loader', 'less-loader', 'postcss-loader']
-      // },
       {
         test: /\.(jpe?g|png|gif)$/,
         use: [{
