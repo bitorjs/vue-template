@@ -1,20 +1,20 @@
 import 'reflect-metadata';
 import Vue from 'vue'
-import metakeys from './metakeys';
-import directive from './directives';
+import decorators from './decorators';
 import Application from 'bitorjs-application'
-import Store from 'bitorjs-store';
+import Store from '../../store';
 
-class VueApplication extends Application {
+export default class extends Application {
   constructor() {
     super()
 
     this.mountVue();
-    this.createDirectives();
+    this.createDirectives(this, Vue);
 
     this.ctx.render = (webview, props) => {
       this.$vue.webview = webview;
       this.$vue.props = props;
+      this.$vue.__update = 0;
     }
 
     this.use((ctx, next) => {
@@ -34,15 +34,18 @@ class VueApplication extends Application {
   }
 
   mountVue() {
-    this.store = new Store('app', '$');
+    this.store = new Store('app', '$', () => {
+      this.$vue.__update += 1;
+      console.log(this.$vue.__update)
+    });
     Vue.prototype.store = this.store;
     Vue.prototype.$store = this.store;
     Vue.prototype.$bitor = this;
-    this.requestMethod();
+    this.mountRequest();
   }
 
-  requestMethod() {
-    ['get', 'post', 'delete', 'put'].forEach((method) => {
+  mountRequest() {
+    decorators.methods.forEach((method) => {
       this.ctx[method] = Vue.prototype[method] = (url) => {
         let routes = this.$route.match(url, method);
         console.log(routes)
@@ -81,8 +84,37 @@ class VueApplication extends Application {
     })
   }
 
-  createDirectives() {
-    directive(this, Vue);
+  createDirectives(app, Vue) {
+
+    ['redirect', 'replace', 'reload'].forEach(name => {
+      Vue.directive(name, {
+        bind(el, binding) {
+          if (el.__click_Callback__) el.removeEventListener('click', el.__click_Callback__);
+          el.__click_Callback__ = () => {
+            const url = el.url;
+            switch (name) {
+              case 'reload':
+                app.reload && app.reload();
+                break;
+              default:
+                app[name](url);
+            }
+          };
+          el.addEventListener('click', el.__click_Callback__);
+          el.url = binding.value;
+        },
+        unbind(el) {
+          if (el.__click_Callback__) el.removeEventListener('click', el.__click_Callback__);
+          if (el.url) delete el.url;
+        },
+        update(el, binding) {
+          el.url = binding.value;
+        },
+        componentUpdated(el, binding) {
+          el.url = binding.value;
+        }
+      });
+    })
   }
 
   start(client, htmlElementId, vueRootComponent) {
@@ -95,37 +127,23 @@ class VueApplication extends Application {
   }
 
 
-  registerRoutes(classname) {
-    const c = new classname(this.ctx)
-    let routes = {};
-    const prefix = Reflect.getMetadata('namespace', classname) || '';
-
-    const ownPropertyNames = Object.getOwnPropertyNames(classname['prototype']);
-    ownPropertyNames.forEach(propertyName => {
-      metakeys.reduce((ret, cur) => {
-        let subroute = Reflect.getMetadata(cur, classname['prototype'], propertyName);
-        if (subroute) {
-          let path;
-
-          if (prefix.path && prefix.path.length > 1) { //:   prefix='/'
-            subroute.path = subroute.path === '/' ? '(/)?' : subroute.path;
-            subroute.path = subroute.path === '*' ? '(.*)' : subroute.path;
-            path = `${prefix.path}${subroute.path}`
-          } else {
-            path = `${subroute.path}`
-          }
-
-          this.$route.register(path, {
-            method: subroute.method.toLowerCase(),
-            // end: subroute.path !== '/'
-          }, c[subroute.prototype].bind(c))
-        }
-      }, '')
-    })
-  }
-
   registerController(controller) {
-    this.registerRoutes(controller)
+    const instance = new controller(this.ctx)
+
+    decorators.iterator(controller, (prefix, subroute) => {
+      let path;
+      if (prefix.path && prefix.path.length > 1) { //:   prefix='/'
+        subroute.path = subroute.path === '/' ? '(/)?' : subroute.path;
+        subroute.path = subroute.path === '*' ? '(.*)' : subroute.path;
+        path = `${prefix.path}${subroute.path}`
+      } else {
+        path = `${subroute.path}`
+      }
+
+      this.$route.register(path, {
+        method: subroute.method.toLowerCase()
+      }, instance[subroute.prototype].bind(instance))
+    })
   }
 
   registerComponent(component) {
@@ -136,15 +154,7 @@ class VueApplication extends Application {
     Vue.component(component.name, component);
   }
 
-  registerDirective(name, option) {
-    Vue.directive(name, option)
-  }
-
   registerPlugin(plugin) {
     plugin(this);
   }
 }
-
-// new VueApplication().start()
-
-export default VueApplication;
