@@ -17,27 +17,20 @@ export default class extends Application {
       this.$vue.__update = 0;
     }
 
-    this.use((ctx, next) => {
+    this.use((ctx) => {
       ctx.params = {};
       let routes = this.$route.match(ctx.url);
       console.log(routes)
-      if (routes[0]) {
-        console.log(ctx)
-        ctx.params = routes[0].params;
-        let r = routes[0].handle(routes[0].params)
-        console.log(r)
+      let route = routes[0];
+      if (route) {
+        ctx.params = route.params;
+        route.handle(route.params)
       }
-      next()
-    }).use(function (ctx, dispatch) {
-      console.log('middleware end')
     })
   }
 
   mountVue() {
-    this.store = new Store('app', '$', () => {
-      this.$vue.__update += 1;
-      console.log(this.$vue.__update)
-    });
+    this.store = new Store('app', '$');
     Vue.prototype.store = this.store;
     Vue.prototype.$store = this.store;
     Vue.prototype.$bitor = this;
@@ -49,8 +42,11 @@ export default class extends Application {
       this.ctx[method] = Vue.prototype[method] = (url) => {
         let routes = this.$route.match(url, method);
         console.log(routes)
-        if (routes[0]) {
-          return routes[0].handle(routes[0].params)
+        let route = routes[0];
+        if (route && !route.params['0']) {
+          return route.handle(route.params)
+        } else {
+          return null;
         }
       }
     })
