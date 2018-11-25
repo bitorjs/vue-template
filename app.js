@@ -1,5 +1,5 @@
 import "normalize.css";
-import VueApplication from './vue-inject';
+import VueApplication from './inject';
 import classloader from './.classloader';
 import Start from './app/view/start';
 

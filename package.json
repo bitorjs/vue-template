@@ -51,6 +51,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bitorjs-application": "^1.0.1",
+    "bitorjs-decorators": "^1.0.0",
     "bitorjs-store": "^1.0.2",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.17",
@@ -66,6 +67,7 @@
     "@babel/preset-env": "^7.1.6",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
+    "bitorjs-watcher": "^1.0.1",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
@@ -78,7 +80,6 @@
     "url-loader": "^1.1.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
-    "watcher-plugin": "^1.0.0",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",

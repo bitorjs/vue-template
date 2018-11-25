@@ -1,4 +1,4 @@
-import D from '../../vue-inject/decorators';
+import D from 'bitorjs-decorators';
 import Index from '../view/index';
 import notFount from '../view/404';
 import Person from '../view/person';

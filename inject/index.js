@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import Vue from 'vue'
-import decorators from './decorators';
+import decorators from 'bitorjs-decorators';
 import Application from 'bitorjs-application'
 import Store from '../../store';
 

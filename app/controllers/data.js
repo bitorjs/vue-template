@@ -1,4 +1,4 @@
-import D from '../../vue-inject/decorators';
+import D from 'bitorjs-decorators';
 
 @D.namespace('/api')
 class IndexController {
