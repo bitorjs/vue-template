@@ -19,7 +19,7 @@ export default class extends Application {
 
     this.use((ctx) => {
       ctx.params = {};
-      let routes = this.$route.match(ctx.url);
+      let routes = this.match(ctx.url);
       console.log(routes)
       let route = routes[0];
       if (route) {
@@ -40,7 +40,7 @@ export default class extends Application {
   mountRequest() {
     decorators.methods.forEach((method) => {
       this.ctx[method] = Vue.prototype[method] = (url) => {
-        let routes = this.$route.match(url, method);
+        let routes = this.match(url, method);
         console.log(routes)
         let route = routes[0];
         if (route && !route.params['0']) {
@@ -136,7 +136,7 @@ export default class extends Application {
         path = `${subroute.path}`
       }
 
-      this.$route.register(path, {
+      this.registerRoute(path, {
         method: subroute.method.toLowerCase()
       }, instance[subroute.prototype].bind(instance))
     })
