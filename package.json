@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bitorjs-application": "^1.0.1",
+    "bitorjs-application": "^1.0.3",
     "bitorjs-decorators": "^1.0.0",
     "bitorjs-store": "^1.0.2",
     "normalize.css": "^8.0.1",
@@ -80,7 +80,7 @@
     "url-loader": "^1.1.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.26.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
