@@ -16,7 +16,7 @@ class IndexController {
 
   @D.Get('/person/:userid')
   person() {
-    this.ctx.render(Person)
+    this.ctx.render(Person, this.ctx.params)
   }
 
   @D.Get('*')

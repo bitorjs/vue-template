@@ -56,13 +56,26 @@ export default class extends Application {
 
     const innerPage = {
       name: 'webview-container',
-      render(h) {
-        if (Object.prototype.toString.call(this.$root.webview) === '[object String]') {
-          return h('span', this.$root.webview);
+      updated() {
+        console.log('updated')
+        let _innerPage = this.$refs.innerPage;
+        let updateProps = _innerPage.$options.updateProps;
+        if (updateProps) {
+          updateProps.call(_innerPage, this.$root.props)
         }
-        return h(this.$root.webview, {
-          props: this.$root.props
-        });
+      },
+      render(h) {
+        console.log('render')
+        let vnode = null;
+        if (Object.prototype.toString.call(this.$root.webview) === '[object String]') {
+          vnode = h('span', this.$root.webview);
+        } else {
+          vnode = h(this.$root.webview, {
+            props: this.$root.props,
+            ref: 'innerPage'
+          });
+        }
+        return vnode;
       }
     }
 

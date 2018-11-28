@@ -4,7 +4,6 @@
     <Tab></Tab>
     <webview-container></webview-container>
   </PageRootContainer>
-  
 </template>
 <script>
 import Tab from "./tab";
@@ -12,6 +11,9 @@ export default {
   nane: "StartPage",
   components: {
     Tab
+  },
+  enter() {
+    console.log("...@@@ start");
   }
 };
 </script>
