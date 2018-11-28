@@ -20,7 +20,7 @@ module.exports = WebpackMerge(base, {
       test: /\.(le|c)ss$/,
       use: [
         'vue-style-loader',
-        'css-loader', 'less-loader', 'postcss-loader'
+        'css-loader', 'postcss-loader', 'less-loader'
       ]
     }, ]
   },
