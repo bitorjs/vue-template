@@ -17,8 +17,9 @@ export default {
   mounted() {
     // console.log("!@##", this.userid);
     setInterval(() => {
-      this.$bitor.redirect(`/person/${this.count++}`);
+      // this.$bitor.redirect(`/person/${this.count++}`);
       // console.log(this.userid);
+      // this.$bitor.reload();
     }, 2000);
   },
   updateProps(props) {

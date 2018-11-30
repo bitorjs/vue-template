@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js --watch --color --progress",
     "dev": "webpack --config ./build/webpack.dev.js --watch --progress --color",
+    "test": "webpack --config ./build/webpack.test.js --progress --color",
     "build": "webpack --config ./build/webpack.prod.js --progress --color"
   },
   "repository": {
@@ -81,6 +82,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.26.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
