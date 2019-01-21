@@ -61,4 +61,4 @@ typings/
 .next
 
 # bitorjs cache
-.classloader.js
+dist

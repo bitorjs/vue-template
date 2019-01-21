@@ -2,21 +2,31 @@ const htmlPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const autoprefixer = require('autoprefixer');
-
 var path = require('path');
 const cwd = process.cwd();
+const babel = require(path.join(cwd, '.babelrc.js'));
 
 module.exports = {
+  entry: {
+    app: './app.js',
+    normalize: 'normalize.css',
+  },
+  externals: [{
+    ui: './packages'
+  }],
+  output: {
+    filename: '[name].build.js',
+    path: path.resolve(cwd, 'dist'),
+    chunkFilename: '[chunkhash].chunk.js'
+  },
   plugins: [
     new htmlPlugin({
       filename: 'index.html',
       template: path.resolve(cwd, 'index.html'),
+      title: "app",
+      chunks: ['app']
     }),
     new VueLoaderPlugin(),
-    new CopyWebpackPlugin([{
-      from: './assets',
-      to: './assets'
-    }]),
     autoprefixer
   ],
 
@@ -32,10 +42,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
+        options: babel
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        use: 'vue-loader',
       },
       {
         test: /\.(jpe?g|png|gif)$/,

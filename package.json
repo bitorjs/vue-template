@@ -1,90 +1,74 @@
 {
-  "name": "bitor",
-  "version": "1.0.0",
+  "name": "vue-tempalte",
+  "version": "1.0.10",
   "description": "",
+  "main": "packages/index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js --watch --color --progress",
     "dev": "webpack --config ./build/webpack.dev.js --watch --progress --color",
-    "test": "webpack --config ./build/webpack.test.js --progress --color",
-    "build": "webpack --config ./build/webpack.prod.js --progress --color"
+    "build": "webpack --config ./build/webpack.prod.js --progress --color",
+    "push": "git add . && git commit -m 'f' && npm version patch && git push"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitorjs/bitor.git"
+    "url": "git+https://github.com/bitorjs/ui.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bitorjs/bitor/issues"
+    "url": "https://github.com/bitorjs/ui/issues"
   },
-  "homepage": "https://github.com/bitorjs/bitor#readme",
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "browsers": [
-              "last 1 Chrome versions"
-            ]
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-export-default-from",
-      "@babel/plugin-proposal-export-namespace-from",
-      "@babel/plugin-syntax-export-namespace-from",
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "@babel/plugin-proposal-class-properties",
-        {
-          "loose": true
-        }
-      ]
-    ]
-  },
+  "homepage": "https://github.com/bitorjs/ui#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "bitorjs-application": "^1.0.4",
-    "bitorjs-decorators": "^1.0.0",
-    "bitorjs-store": "^1.0.3",
+    "@bitores/decorators": "^1.0.1",
+    "@bitores/vue": "^1.0.7",
+    "canvas-exif-orientation": "^0.4.0",
+    "drop-console-webpack-plugin": "^4.0.0",
     "normalize.css": "^8.0.1",
-    "vue": "^2.5.17",
-    "vue-loader": "^15.4.2"
+    "object-assign": "^4.1.1",
+    "qs": "^6.6.0",
+    "reflect-metadata": "^0.1.12",
+    "vue": "^2.5.22",
+    "vue-loader": "^15.5.1",
+    "vuex": "^3.0.1",
+    "vuex-persist": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-decorators": "^7.1.6",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
-    "@babel/plugin-syntax-export-namespace-from": "^7.0.0",
-    "@babel/preset-env": "^7.1.6",
-    "autoprefixer": "^9.3.1",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-decorators": "^7.2.3",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-export-namespace-from": "^7.2.0",
+    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "autoprefixer": "^9.4.5",
     "babel-loader": "^8.0.4",
     "bitorjs-watcher": "^1.0.1",
+    "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^4.0.0-beta.3",
-    "less": "^3.8.1",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.5",
+    "mockjs": "^1.0.1-beta3",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
-    "reflect-metadata": "^0.1.12",
+    "sass-loader": "^7.1.0",
     "url-loader": "^1.1.2",
+    "vconsole": "^3.2.0",
+    "vconsole-webpack-plugin": "^1.4.2",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.26.1",
-    "webpack-bundle-analyzer": "^3.0.3",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.28.4",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "webpack-merge": "^4.1.4"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.1.5"
   }
 }
